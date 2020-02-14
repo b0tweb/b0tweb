@@ -6,7 +6,7 @@ using Meebey.SmartIrc4net;
 
 namespace b0tweb
 {
-    class IRCConnController
+    class IRCConnectionController
     {
         private IrcClient _irc;
 
@@ -16,7 +16,7 @@ namespace b0tweb
         private string _nick;
         private string _realName;
 
-        IRCConnController()
+        IRCConnectionController()
         {
             Random rand = new Random();
             this._irc = new IrcClient();
