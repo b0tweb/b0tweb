@@ -16,6 +16,7 @@ namespace b0tweb.Commands
         /// Name of the command. For example <c>Screenshot</c>.
         /// </summary>
         abstract public string Command { get; }
+
         /// <summary>
         /// Execute the command based on the message given.
         /// </summary>
