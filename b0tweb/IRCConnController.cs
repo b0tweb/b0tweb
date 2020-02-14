@@ -33,16 +33,6 @@ namespace b0tweb
             this._irc.OnChannelMessage += callback;
         }
 
-        public void IrcMessageHandler(object sender, IrcEventArgs e)
-        {
-            Console.WriteLine(e.Data.Message);
-
-            if (e.Data.Message.Equals("stop"))
-            {
-                e.Data.Irc.Disconnect();
-            }
-        }
-
         public void Join(string channel)
         {
             this._irc.Connect(_server, _port);
