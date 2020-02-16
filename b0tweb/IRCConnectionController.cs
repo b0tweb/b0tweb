@@ -105,7 +105,7 @@ namespace b0tweb
         public void Join(string channel)
         {
             this._irc.Connect(IRCConnectionController.Server, IRCConnectionController.Port);
-            this._irc.Login(this.Nick, this.RealName);
+            this._irc.Login(this._nick, this._realName);
             this._irc.RfcJoin(channel);
         }
 
