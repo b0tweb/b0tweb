@@ -33,7 +33,7 @@ namespace b0tweb
             controller.Join(Program.Channel);
             controller.Listen();
 
-            //proxy.Disconnect();
+            proxy.Disconnect();
         }
     }
 }
