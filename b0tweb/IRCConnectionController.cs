@@ -36,7 +36,7 @@ namespace b0tweb
         /// <summary>
         /// The proxy host port of the Tor proxy server.
         /// </summary>
-        private const int ProxyPort = 9150;
+        private const int ProxyPort = 9050;
 
         /// <summary>
         /// The proxy type of the Tor proxy server.

@@ -46,7 +46,7 @@ namespace b0tweb.Commands
         /// <returns>If the command matches the requested action from the IRC message.</returns>
         public bool Matches(string ircMessage)
         {
-            return message.IndexOf(this.Command) != -1;
+            return ircMessage.IndexOf(this.Command) != -1;
         }
     }
 }
