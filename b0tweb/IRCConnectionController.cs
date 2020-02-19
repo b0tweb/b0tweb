@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using b0tweb.MessageHandlers;
 using Meebey.SmartIrc4net;
 
 namespace b0tweb
@@ -35,7 +36,7 @@ namespace b0tweb
         /// <summary>
         /// The proxy host port of the Tor proxy server.
         /// </summary>
-        private const int ProxyPort = 9050;
+        private const int ProxyPort = 9150;
 
         /// <summary>
         /// The proxy type of the Tor proxy server.
@@ -93,9 +94,9 @@ namespace b0tweb
         /// Binds the <c>OnChannelMessage</c> event handler to the <c>callback</c> given.
         /// </summary>
         /// <param name="callback">The event handler to execute on a channel message receive.</param>
-        public void AddMessageHandler (IrcEventHandler callback)
+        public void AddMessageHandler (AbstractMessageHandler messageHandler)
         {
-            this._irc.OnChannelMessage += callback;
+            this._irc.OnChannelMessage += messageHandler.GetHandler(); ;
         }
 
         /// <summary>

