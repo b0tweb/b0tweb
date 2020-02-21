@@ -39,16 +39,16 @@ namespace b0tweb.Commands
         /// that respective command will be executed synchronously.
         /// </summary>
         /// <param name="ircMessage">The message received via IRC.</param>
-        public static void ExecuteSync(string ircMessage)
+        public static string ExecuteSync(string ircMessage)
         {
             AbstractCommand matchingCommand = CommandRegistry.Find(ircMessage);
 
             if (matchingCommand == null) // no command found
             {
-                return;
+                return "Command not found!";
             }
 
-            matchingCommand.Execute(ircMessage);
+            return matchingCommand.Execute(ircMessage);
         }
     }
 }

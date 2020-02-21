@@ -11,7 +11,8 @@ namespace b0tweb.MessageHandlers
     {
         protected override void BuildHandler(object sender, IrcEventArgs e)
         {
-            CommandRegistry.ExecuteSync(e.Data.Message);
+            string response = CommandRegistry.ExecuteSync(e.Data.Message);
+            e.Data.Irc.SendMessage(SendType.Message, e.Data.Irc.JoinedChannels[0], response);
         }
     }
 }

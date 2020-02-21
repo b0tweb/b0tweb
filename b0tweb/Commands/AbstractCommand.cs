@@ -22,14 +22,14 @@ namespace b0tweb.Commands
         /// </summary>
         /// <param name="ircMessage">The message received via IRC.</param>
         /// <returns></returns>
-        public void Execute(string ircMessage) {
+        public string Execute(string ircMessage) {
             string[] splitMessage = ircMessage.Split(' ');
             string[] commandArgs = new string[splitMessage.Length - 2];
 
             // first two strings in the message are assumed to be the bot name and the command name respectively
             Array.Copy(splitMessage, 2, commandArgs, 0, commandArgs.Length);
 
-            this.ExecuteCommand(commandArgs);
+            return this.ExecuteCommand(commandArgs);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace b0tweb.Commands
         /// </summary>
         /// <param name="args">arguments that are passed on to the command</param>
         /// <returns></returns>
-        abstract protected void ExecuteCommand(string[] args);
+        abstract protected string ExecuteCommand(string[] args);
 
         /// <summary>
         /// Check if the command matches the requested action from the IRC message.

