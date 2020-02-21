@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Meebey.SmartIrc4net;
+﻿using Meebey.SmartIrc4net;
 
 namespace b0tweb.MessageHandlers
 {
@@ -20,7 +16,7 @@ namespace b0tweb.MessageHandlers
         /// <summary>
         /// Initializes the <c>IrcEventHandler</c> providing <see cref="BuildHandler"/> method as callback
         /// </summary>
-        public AbstractMessageHandler ()
+        public AbstractMessageHandler()
         {
             this._eventHandler = new IrcEventHandler(BuildHandler);
         }

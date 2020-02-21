@@ -11,7 +11,7 @@ namespace b0tweb
         /// The process to bind the Tor proxy to.
         /// </summary>
         private Process _process;
-        
+
         /// <summary>
         /// The SubPath to the Tor executable.
         /// </summary>

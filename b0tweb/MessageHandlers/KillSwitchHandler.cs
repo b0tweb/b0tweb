@@ -1,8 +1,4 @@
 ﻿using Meebey.SmartIrc4net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace b0tweb.MessageHandlers
 {
@@ -20,7 +16,7 @@ namespace b0tweb.MessageHandlers
                 e.Data.Irc.RfcDie();
                 e.Data.Irc.Disconnect();
             }
-            
+
         }
     }
 }

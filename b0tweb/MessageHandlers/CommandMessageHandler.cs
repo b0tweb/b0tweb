@@ -1,9 +1,5 @@
-﻿using Meebey.SmartIrc4net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using b0tweb.Commands;
+﻿using b0tweb.Commands;
+using Meebey.SmartIrc4net;
 
 namespace b0tweb.MessageHandlers
 {
@@ -17,6 +13,6 @@ namespace b0tweb.MessageHandlers
             {
                 e.Data.Irc.SendMessage(SendType.Message, e.Data.Irc.JoinedChannels[0], response);
             }
-        }                                                   
+        }
     }
 }
