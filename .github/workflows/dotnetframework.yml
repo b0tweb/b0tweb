@@ -9,6 +9,8 @@ jobs:
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Restore packages
       run: nuget restore b0tweb.sln
+    - name: Copy Configuration
+      run: copy b0tweb\Configuration_example.cs b0tweb\Configuration.cs
     - name: Setup MSBuild.exe
       uses: warrenbuckley/Setup-MSBuild@v1
     - name: Build with MSBuild
