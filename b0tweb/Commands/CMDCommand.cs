@@ -39,7 +39,7 @@ namespace b0tweb.Commands
             string result = proc.StandardOutput.ReadToEnd();
 
             // Display the command output.
-            return result; // TODO: Temporary. Need a way to nicely propogate results to irc
+            return result;
         }
     }
 }
