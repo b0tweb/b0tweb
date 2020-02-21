@@ -8,11 +8,7 @@ namespace b0tweb.MessageHandlers
         protected override void BuildHandler(object sender, IrcEventArgs e)
         {
             string response = CommandRegistry.ExecuteSync(e.Data.Message);
-
-            if (e.Data.Irc.JoinedChannels.Count > 0)
-            {
-                e.Data.Irc.SendMessage(SendType.Message, e.Data.Irc.JoinedChannels[0], response);
-            }
+            e.Data.Irc.SendMessage(SendType.Message, e.Data.Irc.JoinedChannels[0], response);
         }
     }
 }

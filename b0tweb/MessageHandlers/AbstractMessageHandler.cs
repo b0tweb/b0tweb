@@ -30,7 +30,6 @@ namespace b0tweb.MessageHandlers
             return this._eventHandler;
         }
 
-        // TODO: Use template pattern to apply bot name matching and only then call BuildHandler
 
         /// <summary>
         /// The callback function to be executed during an IrcEvent

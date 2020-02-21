@@ -28,7 +28,6 @@ namespace b0tweb
 
             IRCConnectionController controller = new IRCConnectionController();
 
-            controller.AddMessageHandler(new KillSwitchHandler());
             controller.AddMessageHandler(new CommandMessageHandler());
 
             controller.Join(Program.Channel);
