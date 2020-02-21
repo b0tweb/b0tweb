@@ -12,13 +12,23 @@ namespace b0tweb.MessageHandlers
     /// </summary>
     abstract class AbstractMessageHandler
     {
+        /// <summary>
+        /// The irc event handler
+        /// </summary>
         private IrcEventHandler _eventHandler;
 
+        /// <summary>
+        /// Initializes the <c>IrcEventHandler</c> providing <see cref="BuildHandler"/> method as callback
+        /// </summary>
         public AbstractMessageHandler ()
         {
             this._eventHandler = new IrcEventHandler(BuildHandler);
         }
 
+        /// <summary>
+        /// Getter for the SmartIrc4Net <c>IrcEventHandler</c> defined by this message handler
+        /// </summary>
+        /// <returns>SmartIrc4Net handler defined by this Message Handler</returns>
         public IrcEventHandler GetHandler()
         {
             return this._eventHandler;
