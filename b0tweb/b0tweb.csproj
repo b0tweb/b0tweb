@@ -93,9 +93,6 @@
     <None Include="Privoxy\match-all.action">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Privoxy\privoxy.log">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Privoxy\user.action">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
