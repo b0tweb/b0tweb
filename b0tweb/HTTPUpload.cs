@@ -113,7 +113,7 @@ namespace b0tweb
                     StreamReader reader = new StreamReader(response.GetResponseStream());
                     reply = reader.ReadToEnd();
                 }
-            } catch (Exception e)
+            } catch
             {
                 // TODO: discuss about exceptions
                 return String.Empty;
