@@ -110,8 +110,10 @@ namespace b0tweb
                     StreamReader reader = new StreamReader(response.GetResponseStream());
                     reply = reader.ReadToEnd();
                 }
-            } catch
+            } catch (Exception e)
             {
+                Console.Write(e.Message);
+
                 // TODO: discuss about exceptions
                 return String.Empty;
             }

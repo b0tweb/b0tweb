@@ -23,7 +23,7 @@ namespace b0tweb
         /// </summary>
         public Privoxy()
         {
-            this._process = new Process();
+            this._process = null;
         }
 
         /// <summary>
@@ -32,6 +32,9 @@ namespace b0tweb
         /// </summary>
         public void Establish()
         {
+            if (Processes.IsRunning("privoxy")) return;
+
+            this._process = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.WindowStyle = ProcessWindowStyle.Hidden;
 
@@ -49,7 +52,7 @@ namespace b0tweb
         /// </summary>
         public void Disconnect()
         {
-            if (!this._process.HasExited)
+            if (this._process != null && !this._process.HasExited)
             {
                 this._process.Kill();
             }
