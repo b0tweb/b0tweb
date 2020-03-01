@@ -11,7 +11,7 @@ namespace b0tweb.MessageHandlers
         /// <summary>
         /// Key word that should be part of the message to trigger the kill switch
         /// </summary>
-        const string KillKeyword = "life is suffering";
+        private const string KillKeyword = "life is suffering";
 
         protected override void BuildHandler(object sender, IrcEventArgs e)
         {
