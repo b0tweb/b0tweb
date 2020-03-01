@@ -84,6 +84,9 @@
     <Compile Include="TorProxy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Curl\curl-ca-bundle.crt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Privoxy\default.action">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -102,6 +105,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Curl\curl.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Curl\libcurl-x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Privoxy\config.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

