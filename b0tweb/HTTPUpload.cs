@@ -45,7 +45,6 @@ namespace b0tweb
 
             try
             {
-                Console.WriteLine(process.StandardOutput.ReadToEnd());
                 dynamic json = JsonConvert.DeserializeObject(process.StandardOutput.ReadToEnd());
 
                 if (json.success == true)
