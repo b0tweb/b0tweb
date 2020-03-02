@@ -19,7 +19,7 @@ namespace b0tweb
         {
             string basePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string argument = String.Format(
-                 "--socks5-hostname {0}:{1}  -F \"files[]={2}\" {3}  --user {4}:{5}",
+                 "--socks5-hostname {0}:{1}  -F \"files[]=@{2}\" {3}  --user {4}:{5}",
                 TorProxy.Host,
                 TorProxy.Port,
                 filePath,
