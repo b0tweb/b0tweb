@@ -43,13 +43,21 @@ namespace b0tweb
 
             process.Start();
 
-            dynamic json = JsonConvert.DeserializeObject(process.StandardOutput.ReadToEnd());
-
-            if (json.success == true)
+            try
             {
-                return json.files[0].url;
+                dynamic json = JsonConvert.DeserializeObject(process.StandardOutput.ReadToEnd());
+
+                if (json.success == true)
+                {
+                    return json.files[0].url;
+                }
+            }
+            catch (Exception e)
+            {
+                return e.Message;
             }
 
+            // Removes "not all paths return something" error.
             return String.Empty;
         }
     }
