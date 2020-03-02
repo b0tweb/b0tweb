@@ -19,7 +19,7 @@ namespace b0tweb
         {
             string basePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string argument = String.Format(
-                 "--socks5-hostname {0}:{1}  -F \"files[]=@{2}\" {3}  --user {4}:{5}",
+                 "--socks5-hostname {0}:{1}  -F \"files[]={2}\" {3}  --user {4}:{5}",
                 TorProxy.Host,
                 TorProxy.Port,
                 filePath,
@@ -45,20 +45,21 @@ namespace b0tweb
 
             try
             {
+                Console.WriteLine(process.StandardOutput.ReadToEnd());
                 dynamic json = JsonConvert.DeserializeObject(process.StandardOutput.ReadToEnd());
 
                 if (json.success == true)
                 {
                     return json.files[0].url;
                 }
+
+                // Will be set if not successful
+                return json.description;
             }
             catch (Exception e)
             {
                 return e.Message;
             }
-
-            // Removes "not all paths return something" error.
-            return String.Empty;
         }
     }
 }
