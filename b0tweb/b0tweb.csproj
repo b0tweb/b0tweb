@@ -76,6 +76,7 @@
     <Compile Include="Commands\CMDCommand.cs" />
     <Compile Include="Commands\CommandRegistry.cs" />
     <Compile Include="Commands\ScreenshotCommand.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="HTTPUpload.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="MessageHandlers\AbstractMessageHandler.cs" />
