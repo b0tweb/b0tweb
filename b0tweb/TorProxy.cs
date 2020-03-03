@@ -41,14 +41,11 @@ namespace b0tweb
         /// </summary>
         public void Establish()
         {
-            if (Processes.IsRunning("tor")) return;
-
             this._process = new Process();
             ProcessStartInfo info = new ProcessStartInfo();
             info.WindowStyle = ProcessWindowStyle.Hidden;
 
-            string basePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            info.FileName = basePath + TorProxy.TorSubPath;
+            info.FileName = FileHelper.GetBasePath() + TorProxy.TorSubPath;
 
             this._process.StartInfo = info;
             this._process.Start();
