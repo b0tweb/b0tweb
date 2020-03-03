@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
 using System.Reflection;
 
 namespace b0tweb
 {
+    /// <summary>
+    /// FileHelper implements general file operations we need in the b0tweb.
+    /// </summary>
     class FileHelper
     {
         public static string GetBasePath()
