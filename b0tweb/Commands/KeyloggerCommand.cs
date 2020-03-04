@@ -18,11 +18,20 @@
 
                 return "keylogger cleared";
             }
+            else if (args[0].Equals("upload"))
+            {
+                return this.uploadData();
+            }
 
             // TODO: store functionality?
             // TODO: upload functionality
 
             return keylogger.Data;
+        }
+
+        private string uploadData()
+        {
+            return "";
         }
     }
 }

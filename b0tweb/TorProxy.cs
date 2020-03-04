@@ -18,6 +18,16 @@ namespace b0tweb
         private const string TorSubPath = @"\Tor\tor.exe";
 
         /// <summary>
+        /// The proxy host address of the Tor proxy server.
+        /// </summary>
+        public const string Host = "localhost";
+
+        /// <summary>
+        /// The proxy host port of the Tor proxy server.
+        /// </summary>
+        public const int Port = 9050;
+
+        /// <summary>
         /// Constructs a new Tor proxy.
         /// </summary>
         public TorProxy()

