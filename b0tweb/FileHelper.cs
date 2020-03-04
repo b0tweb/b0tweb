@@ -9,6 +9,10 @@ namespace b0tweb
     /// </summary>
     class FileHelper
     {
+        /// <summary>
+        /// Get the path where the executable is located.
+        /// </summary>
+        /// <returns>The path where the executable is located.</returns>
         public static string GetBasePath()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
