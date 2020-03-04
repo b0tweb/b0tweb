@@ -57,7 +57,7 @@ namespace b0tweb
         /// </summary>
         public void Disconnect()
         {
-            if (this._process != null  && !this._process.HasExited)
+            if (this._process != null && !this._process.HasExited)
             {
                 this._process.Kill();
             }
