@@ -86,6 +86,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="MessageHandlers\AbstractMessageHandler.cs" />
     <Compile Include="MessageHandlers\CommandMessageHandler.cs" />
+    <Compile Include="MessageHandlers\KillSwitchHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="IRCConnectionController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
