@@ -7,7 +7,7 @@ namespace b0tweb.Commands
     {
         private static AbstractCommand[] _supportedCommands = { 
             new CMDCommand(), 
-	    new KeyloggerCommand(),
+	      new KeyloggerCommand(),
             new ScreenshotCommand(),
         };
 
