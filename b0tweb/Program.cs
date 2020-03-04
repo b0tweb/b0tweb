@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using b0tweb.MessageHandlers;
 
 namespace b0tweb
@@ -23,7 +24,7 @@ namespace b0tweb
 
             TorProxy proxy = new TorProxy();
             proxy.Establish();
-
+            Thread.Sleep(5); // wait for connection to be established
             Console.WriteLine("Connection to Tor successfuly established!");
 
             IRCConnectionController controller = new IRCConnectionController();
