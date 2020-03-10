@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <None Remove="b0tweb\b0tweb.exe" />
-    <None Remove="b0tweb\b0tweb.pdb" />
     <None Remove="b0tweb\Meebey.SmartIrc4net.dll" />
     <None Remove="b0tweb\Meebey.SmartIrc4net.xml" />
     <None Remove="b0tweb\Newtonsoft.Json.dll" />
@@ -36,7 +35,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="b0tweb\b0tweb.exe" />
-    <EmbeddedResource Include="b0tweb\b0tweb.pdb" />
     <EmbeddedResource Include="b0tweb\Meebey.SmartIrc4net.dll" />
     <EmbeddedResource Include="b0tweb\Meebey.SmartIrc4net.xml" />
     <EmbeddedResource Include="b0tweb\Newtonsoft.Json.dll" />
