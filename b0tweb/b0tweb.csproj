@@ -99,6 +99,7 @@
     <Compile Include="Commands\AbstractCommand.cs" />
     <Compile Include="Commands\CMDCommand.cs" />
     <Compile Include="Commands\CommandRegistry.cs" />
+    <Compile Include="Commands\StallmanCommand.cs" />
     <Compile Include="Commands\KeyloggerCommand.cs" />
     <Compile Include="Commands\WebcamControlCommand.cs" />
     <Compile Include="Keylogger.cs" />
@@ -126,6 +127,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Curl\libcurl-x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\stallman.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Tor\libcrypto-1_1-x64.dll">
