@@ -8,6 +8,11 @@ namespace b0tweb_runner
 {
     class Program
     {
+        /// <summary>
+        /// Store a resource in the appdata folder.
+        /// </summary>
+        /// <param name="item">The resource name</param>
+        /// <param name="path">The appdata folder path</param>
         private static void StoreResource(string item, string path)
         {
             string[] parts = item.Split('.');
@@ -35,6 +40,10 @@ namespace b0tweb_runner
             fileStream.Close();
         }
 
+        /// <summary>
+        /// Create a symbolic link for the b0tweb application.
+        /// </summary>
+        /// <param name="path">The appdata folder path</param>
         private static void CreateSymbolicLink(string path)
         {
 
