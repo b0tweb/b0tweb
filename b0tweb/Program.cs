@@ -37,7 +37,6 @@ namespace b0tweb
             controller.AddMessageHandler(new CommandMessageHandler());
 
             controller.Join(Program.Channel);
-
             controller.Listen();
 
             proxy.Disconnect();
