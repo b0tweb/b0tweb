@@ -68,8 +68,6 @@ namespace b0tweb
         /// <returns>Exit code from Curl</returns>
         public static int Download(string url, string location)
         {
-
-            Console.WriteLine("Moved old file");
             string argument = String.Format(
                  "--socks5-hostname {0}:{1} {2} --user {3}:{4} -o {5}",
                 TorProxy.Host,
