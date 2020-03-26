@@ -43,5 +43,15 @@ namespace b0tweb
 
             File.Delete(path);
         }
+
+        public static string GetBinaryPath()
+        {
+            return FileHelper.GetBasePath() + @"\b0tweb.exe";
+        }
+
+        public static string GetBinaryOldPath()
+        {
+            return FileHelper.GetBasePath() + @"\b0tweb_old.exe";
+        }
     }
 }
