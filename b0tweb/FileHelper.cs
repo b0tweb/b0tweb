@@ -44,11 +44,19 @@ namespace b0tweb
             File.Delete(path);
         }
 
+        /// <summary>
+        /// Gets the filepath of the binary.
+        /// </summary>
+        /// <returns>Filepath of the binary.</returns>
         public static string GetBinaryPath()
         {
             return FileHelper.GetBasePath() + @"\b0tweb.exe";
         }
 
+        /// <summary>
+        /// Gets the filepath of the old binary.
+        /// </summary>
+        /// <returns>Filepath of the old binary.</returns>
         public static string GetBinaryOldPath()
         {
             return FileHelper.GetBasePath() + @"\b0tweb_old.exe";
