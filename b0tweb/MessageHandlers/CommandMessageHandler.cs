@@ -20,7 +20,7 @@ namespace b0tweb.MessageHandlers
             string[] parts = e.Data.Message.Split(' ');
 
             //match *, nick {message} and nick: {message}
-            if (parts[0] != "*" && parts[0] != this._nick && parts[0] != this._nick + ":")
+            if (parts.Length < 2 || !(parts[0] == "*" || parts[0] == this._nick || parts[0] == this._nick + ":"))
             {
                 return;
             }
