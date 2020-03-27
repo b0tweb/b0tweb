@@ -17,10 +17,7 @@ namespace b0tweb.MessageHandlers
 
         protected override void BuildHandler(object sender, IrcEventArgs e)
         {
-            string[] parts = e.Data.Message.Split(' ');
-
-            //match *, nick {message} and nick: {message}
-            if (parts.Length < 2 || !(parts[0] == "*" || parts[0] == this._nick || parts[0] == this._nick + ":"))
+            if (!MessageHandlerHelper.MatchesNick(e.Data.Message, this._nick))
             {
                 return;
             }
