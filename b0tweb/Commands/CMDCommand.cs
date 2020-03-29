@@ -35,8 +35,16 @@ namespace b0tweb.Commands
             // Get the output into a string
             string result = proc.StandardOutput.ReadToEnd();
 
+            if (result.Split('\n').Length > 2)
+            {
+                return FileHelper.UploadString(result);
+            }
+            else
+            {
+                return result;
+            }
+
             // Display the command output.
-            return result;
         }
     }
 }
