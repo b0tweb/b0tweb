@@ -46,6 +46,10 @@ namespace b0tweb_runner
             }
         }
 
+        /// <summary>
+        /// Checks if the b0tweb process is already running.
+        /// </summary>
+        /// <returns>If b0tweb is already running.</returns>
         public static bool IsRunning()
         {
             foreach (Process clsProcess in Process.GetProcesses())
