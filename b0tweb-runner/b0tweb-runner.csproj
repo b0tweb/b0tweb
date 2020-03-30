@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Faker\fake.exe" />
     <None Remove="Minecraft.exe" />
+    <None Remove="Resources\stallman.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,9 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Faker\fake.exe" />
+    <EmbeddedResource Include="Resources\stallman.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

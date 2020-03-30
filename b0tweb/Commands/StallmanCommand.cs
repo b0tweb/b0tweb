@@ -11,6 +11,8 @@ namespace b0tweb.Commands
             Application.EnableVisualStyles();
 
             Form form = new Form();
+            form.TopMost = true;
+
             form.Width = 800;
             form.Height = 600;
 
