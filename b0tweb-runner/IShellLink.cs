@@ -6,7 +6,7 @@ namespace b0tweb_runner
 {
 
     /// <summary>
-    /// Interface for the Shall Link class.
+    /// Interface for the Shell Link class.
     /// </summary>
     [ComImport]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
